@@ -29,7 +29,12 @@ client.on('ready', async () => {
 
 
 
-setInterval(function(){setStatus()}, 11000);
+setInterval(function() {
+  var date = new Date();
+  if ( date.getSeconds() === 0 || date.getSeconds() === 15 || date.getSeconds() === 30 || date.getSeconds() === 45) {
+    setStatus();
+  }
+}, 1000);
 setInterval(function(){client.user.setStatus('online');}, 100000);
 
 client.login(process.env.DISCORD_TOKEN);
