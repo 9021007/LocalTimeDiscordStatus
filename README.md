@@ -1,6 +1,6 @@
 # LocalTimeDiscordStatus
 
-Set the time zone in `index.js` to your own time zone, set the `DISCORD_TOKEN` environment variable to your token, and start the script. Easy as that.
+Set the time zone in `index.js` to your own time zone, set the token where indicated, and start the script. Easy as that.
 I would recommend adding this into an ubuntu docker container.
 Use `npm install moment-timezone --save` to install `moment-timezone`.
 
