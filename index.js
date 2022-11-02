@@ -23,7 +23,6 @@ client.on('ready', async () => {
     console.log(`${client.user.username} is ready!`);
     ready = true
     setStatus();
-    client.user.setStatus('idle');
 })
 
 //on message in dms from specific user, respond with message
@@ -31,7 +30,7 @@ client.on('messageCreate', async (message) => {
     if (message.author.id === '347866765608484864') {
       //if message is sent in dms
       if (message.channel.type === 'DM') {
-        if(message.content.toLowerCase().includes("sorry")) { {
+        if(message.content.toLowerCase().includes("sorry") || message.content.toLowerCase().includes("apologies")) { {
           //send random message from array
           array = ["https://cdn.discordapp.com/attachments/824483359035752458/1036443938065752144/boom.mp4",
           "https://cdn.discordapp.com/attachments/824483359035752458/1036444015077371977/burning_jesse_at_the_stake.png",
@@ -70,7 +69,7 @@ client.on('messageCreate', async (message) => {
 setInterval(function() {
   var date = new Date();
   if ( date.getSeconds() === 0 || date.getSeconds() === 15 || date.getSeconds() === 30 || date.getSeconds() === 45) {
-    setStatus();
+    client.user.setStatus('online');
   }
 }, 1000);
 setInterval(function(){client.user.setStatus('idle');}, 100000);
