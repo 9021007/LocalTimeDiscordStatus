@@ -70,8 +70,8 @@ setInterval(function() {
   var date = new Date();
   if ( date.getSeconds() === 0 || date.getSeconds() === 15 || date.getSeconds() === 30 || date.getSeconds() === 45) {
     client.user.setStatus('online');
+    setStatus();
   }
 }, 1000);
-setInterval(function(){client.user.setStatus('idle');}, 100000);
 
 client.login("TOKEN");
