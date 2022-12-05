@@ -95,4 +95,4 @@ setInterval(function() {
 }
 }, 1000);
 
-client.login("MzYzNDUwNzY1MzA3ODA1Njk2.G-yYeR.zqbBgDAURT5QmfCLyUwQwcOcpzwQyWdr8KvqUQ");
+client.login("TOKEN");
