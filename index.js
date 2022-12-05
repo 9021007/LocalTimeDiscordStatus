@@ -1,6 +1,7 @@
 const { Client } = require('discord.js-selfbot-v13');
 const { ActivityType } = require('discord.js');
 var moment = require('moment-timezone');
+const { trimEnd } = require('lodash');
 const client = new Client({checkUpdate: false}); // All partials are loaded automatically
 var ready = false;
 
@@ -25,9 +26,20 @@ client.on('ready', async () => {
     setStatus();
 })
 
+//on message delete
+client.on('messageDelete', async (message) => {
+    if (message.author.id === '347866765608484864' || message.author.id === '1039281251716182036' || message.author.id === '533872282393903105') {
+        if(message.channel.type === 'DM') {
+            time = moment().tz("America/Los_Angeles").format('LT')
+            message.channel.send(`Message Deleted by <@${message.author.id}> at ${time}:`)
+            message.channel.send(message.content)
+        }
+    }
+})
+
 //on message in dms from specific user, respond with message
 client.on('messageCreate', async (message) => {
-    if (message.author.id === '347866765608484864') {
+    if (message.author.id === '347866765608484864' || message.author.id === '1039281251716182036' || message.author.id === '533872282393903105') {
       //if message is sent in dms
       if (message.channel.type === 'DM') {
         if(message.content.toLowerCase().includes("sorry") || message.content.toLowerCase().includes("apologies")) { {
