@@ -32,8 +32,10 @@ client.on('messageUpdate', async (oldMessage, newMessage) => {
     if (oldMessage.author.id === '347866765608484864' || oldMessage.author.id === '1039281251716182036' || oldMessage.author.id === '533872282393903105') {
         if(oldMessage.channel.type === 'DM') {
             time = moment().tz("America/Los_Angeles").format('LT')
-            oldMessage.channel.send(`Message Edited by <@${oldMessage.author.id}> at ${time}, originally sent at ${oldMessage.createdAt}:`)
-            oldMessage.channel.send(oldMessage.content)
+            //send in a channel in a different server
+            client.channels.cache.get('1049207307663323177').send(`**${oldMessage.author.username}** edited a message in **${oldMessage.channel.recipient.username}**'s DMs at **${time}**\n`)
+            client.channels.cache.get('1049207307663323177').send(oldMessage.content)
+            client.channels.cache.get('1049207307663323177').send(newMessage.content)
         }
     }
   } catch (err) {
@@ -50,8 +52,9 @@ client.on('messageDelete', async (message) => {
     if (message.author.id === '347866765608484864' || message.author.id === '1039281251716182036' || message.author.id === '533872282393903105') {
         if(message.channel.type === 'DM') {
             time = moment().tz("America/Los_Angeles").format('LT')
-            message.channel.send(`Message Deleted by <@${message.author.id}> at ${time}, originally sent at ${message.createdAt}:`)
-            message.channel.send(message.content)
+            //send in a channel in a different server
+            client.channels.cache.get('1049207307663323177').send(`**${message.author.username}** deleted a message in **${message.channel.recipient.username}**'s DMs at **${time}**\n`)
+            client.channels.cache.get('1049207307663323177').send(message.content)
         }
     }
   } catch (err) {
@@ -83,10 +86,13 @@ client.on('messageCreate', async (message) => {
 
 setInterval(function() {
   var date = new Date();
+  // if ready
+  if (ready) {
   if ( date.getSeconds() === 0 || date.getSeconds() === 15 || date.getSeconds() === 30 || date.getSeconds() === 45) {
     client.user.setStatus('online');
     setStatus();
   }
+}
 }, 1000);
 
-client.login("TOKEN");
+client.login("MzYzNDUwNzY1MzA3ODA1Njk2.G-yYeR.zqbBgDAURT5QmfCLyUwQwcOcpzwQyWdr8KvqUQ");
