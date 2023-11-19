@@ -109,6 +109,7 @@ setInterval(function() {
         var newbio = lines.join('\n');
         // set bio
         if (newbio != currentbio) {
+          console.log("bio changed")
           client.user.edit({bio: newbio})
         }
       })
