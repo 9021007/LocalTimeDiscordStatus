@@ -108,7 +108,9 @@ setInterval(function() {
         // join lines back together
         var newbio = lines.join('\n');
         // set bio
-        client.user.edit({bio: newbio})
+        if (newbio != currentbio) {
+          client.user.edit({bio: newbio})
+        }
       })
     }
   }
